@@ -27,15 +27,17 @@ def test_algorithmia(name):
     link=algo.pipe(input).result['output']
     last=client.file(link).getBytes()
     image = Image.open(io.BytesIO(last))
-    new_name= name[:-4]
     type=name.split('.',1)[1]
+    h=len(str(type))+1
+    new_name= name[:-h]
     image = image.convert("RGB")
     image.save('data/colored-algorithmia/'+str(new_name)+"out."+str(type))
     image.show()
 
 def test_colorize(name):
         type=name.split('.',1)[1]
-        new_name= name[:-4]
+        h=len(str(type))+1
+        new_name= name[:-h]
         os.system("th colorize.lua data/"+name+" data/colored-siggraph/"+new_name+"out."+type)
         image=Image.open('data/colored-siggraph/'+new_name+"out."+type)
         image = image.convert("RGB")
