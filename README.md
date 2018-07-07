@@ -6,13 +6,20 @@ A Deep Learning based coloring tool, which can color a black-white or gray pictu
 
 ## Tasks:
 
-#### Task 1 (Deadline: Saturday 30th June 2018)
-- Understand the problem that we are trying to solve from the technical and layman sides, understand the input and the output.
-- Collect as much papers as you can about the photo coloring.
-- Summarize as much as you can from the papers that you collected.
-- Search and collect source code implementing the photo coloring task.
-- Try to run the collected source codes.
-- Search and collect tutorials and more related materials that we can follow to implement such system.
-- Attend the onsite meeting to discuss the stuff that you did so far.
+#### Tasks
+1. Study CNN, proposed resources:
+- http://cs231n.github.io/convolutional-networks/ 
+- https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html 
+- https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/ 
+- https://www.youtube.com/watch?v=Gu0MkmynWkw 
 
-#### Task 2 (Deadline: )
+2. Study GAN
+
+3. Read and summarize the following papers:
+- [Colorization using CNN](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/en/).
+- [Colorization using GAN](https://www.dropbox.com/home/photo-coloring/Papers/Karim%20El%20Ghazouly/Colorization%20using%20GAN?preview=1803.05400.pdf).
+
+4. Find source code and proper implementation for the above two papers, understand it, and learn how to learn and enhance it. 
+
+5. Search for good resources to study and learn GAN and CNN, and share it with others.
+
