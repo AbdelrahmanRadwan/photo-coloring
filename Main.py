@@ -11,8 +11,18 @@ from scipy import misc
 import cv2
 import argparse
 
-BatchSize=1
-FC_Out=None
+num_of_video_frames = 0
+AbColors_values = None
+GreyImages_List = []
+ColorImages_List = []
+BatchSize = 1
+BatchIdx = 1
+Epochs = 200
+ExamplesNum = 1    # Number of all Images in Db Dir
+Imgsize = 224, 224
+GreyChannels = 1
+ML_OUTPUT = None
+Fusion_output = None
 
 Low_Weight = {
     'wl1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.001)),
