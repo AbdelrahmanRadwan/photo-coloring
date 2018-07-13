@@ -28,6 +28,8 @@ CImages_Path='Data/Colored'
 GImages_Path='Data/Grey'
 idx=1
 
+sess=tf.InteractiveSession()
+
 Low_Weight = {
     'wl1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.001)),
     'wl2': tf.Variable(tf.truncated_normal([3, 3, 64, 128], stddev=0.001)),
@@ -214,8 +216,11 @@ def Construct_Graph(input):
     return  output
 
 def Load_Batch():
-    GreyImages_List=[]
-    ColorImages_List=[]
+    global GreyImages_List
+    global ColorImages_List
+    global idx
+    global BatchSize
+
     for i in range(BatchSize):
         Color = Image.open(CImages_Path+str(idx)+'.jpg')
         ColorImages_List.append(Color)
@@ -224,6 +229,37 @@ def Load_Batch():
         Converted=Converted.reshape(np.shape(Converted)[0],np.shape(Converted)[1],1)
         GreyImages_List.append(Converted)
         idx=idx+1
+
+
+def Training_Model():
+    global AbColors_values
+    global GreyImages_List
+    global BatchSize
+    global Epochs
+    global ExamplesNum
+    global idx
+
+    Input = tf.placeholder(tf.float32, [None, 224, 224, 1])
+    AB_Original=tf.placeholder(tf.float32, [None, 224, 224, 2])
+    Prediction = Construct_Graph(Input)
+    MSE = tf.reduce_mean(F_Norm(tf.subtract(Prediction, AB_Original)))
+    optim=tf.train.AdadeltaOptimizer(learning_rate=1e-6)
+    optim.minimize(MSE)
+    saver = tf.train.Saver()
+    saver = tf.train.import_meta_graph('/Models')
+    saver.restore(sess, '/Models')
+
+    for i in range(Epochs):
+        loss=0
+        turns = ExamplesNum/BatchSize
+        for j in range(turns):
+            Load_Batch()
+            _,c =sess.run([optim, MSE],feed_dict={Input:GreyImages_List, AB_Original:AbColors_values})
+            loss+=c
+        print("Epoch :",i+1,"Loss is: ",loss)
+    saver.save(sess,"/Models",write_meta_graph=False)
+
+
 
 
 
