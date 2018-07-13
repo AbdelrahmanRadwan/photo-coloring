@@ -186,7 +186,8 @@ def Construct_Graph(input):
 
     colconv1=tf.nn.relu(tf.nn.conv2d(input=Fuse,filter=ColorNet_Weight['wc1'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc1'])
     colconv2=tf.nn.relu(tf.nn.conv2d(input=colconv1,filter=ColorNet_Weight['wc2'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc2'])
-    colconv3=tf.nn.relu(tf.nn.conv2d(input=colconv2,filter=ColorNet_Weight['wc3'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc3'])
+    colconv2_UpSample = tf.image.resize_nearest_neighbor(colconv2, [56, 56])
+    colconv3=tf.nn.relu(tf.nn.conv2d(input=colconv2_UpSample,filter=ColorNet_Weight['wc3'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc3'])
     colconv4=tf.nn.relu(tf.nn.conv2d(input=colconv3,filter=ColorNet_Weight['wc4'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc4'])
     colconv4_UpSample=tf.image.resize_nearest_neighbor(colconv4,[112,112])
     colconv5=tf.nn.relu(tf.nn.conv2d(input=colconv4_UpSample,filter=ColorNet_Weight['wc5'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc5'])
