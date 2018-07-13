@@ -23,6 +23,7 @@ Imgsize = 224, 224
 GreyChannels = 1
 ML_OUTPUT = None
 Fusion_output = None
+FC_Out=None
 
 Low_Weight = {
     'wl1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.001)),
@@ -135,6 +136,23 @@ def Construct_Fusion(mid_output,global_output):
     global_output= tf.reshape(global_output, [BatchSize, 28, 28, 256])
     Fusion_output = tf.concat([mid_output, global_output], 3)
     return Fusion_output
+
+
+
+def Get_Chrominance():
+
+    global AbColors_values
+    global ColorImages_List
+
+    AbColors_values=np.empty(BatchSize,float,[224,224,2])
+
+    for i in range (BatchSize):
+        colored=color.rgb2lab(ColorImages_List[i])
+        AbColors_values[i,:,:,1]=Normlization(colored[:,:,1],-128,128)
+        AbColors_values[i,:,:,2]=Normlization(colored[:,:,2],-128,128)
+
+
+
 
 def Normlization(Value,MinVale,MaxValue):
     '''
