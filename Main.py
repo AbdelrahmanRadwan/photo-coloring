@@ -151,4 +151,9 @@ def Construct_FC(global_cnn_output):
     return features
 
 
+def Construct_Fusion(mid_output,global_output):
+    global_output = tf.tile(global_output, [1, 28*28])
+    global_output= tf.reshape(global_output, [BatchSize, 28, 28, 256])
+    Fusion_output = tf.concat([mid_output, global_output], 3)
+    return Fusion_output
 
