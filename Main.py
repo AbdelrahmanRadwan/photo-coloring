@@ -11,6 +11,9 @@ from scipy import misc
 import cv2
 import argparse
 
+BatchSize=1
+FC_Out=None
+
 Low_Weight = {
     'wl1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.001)),
     'wl2': tf.Variable(tf.truncated_normal([3, 3, 64, 128], stddev=0.001)),
@@ -73,6 +76,55 @@ FC_Biases = {
 
 }
 
+ColorNet_Weight={
+
+    'wc1': tf.Variable(tf.truncated_normal([3, 3, 512, 256], stddev=0.001)),
+    'wc2': tf.Variable(tf.truncated_normal([3, 3, 256, 128], stddev=0.001)),
+    'wc3': tf.Variable(tf.truncated_normal([3, 3, 128, 64], stddev=0.001)),
+    'wc4': tf.Variable(tf.truncated_normal([3, 3, 64, 64], stddev=0.001)),
+    'wc5': tf.Variable(tf.truncated_normal([3, 3, 64, 32], stddev=0.001)),
+    'wc6': tf.Variable(tf.truncated_normal([3, 3, 32, 2], stddev=0.001))
+
+}
+
+ColorNet_Biases={
+
+    'bc1': tf.Variable(tf.truncated_normal([256], stddev=0.001)),
+    'bc2': tf.Variable(tf.truncated_normal([128], stddev=0.001)),
+    'bc3': tf.Variable(tf.truncated_normal([64], stddev=0.001)),
+    'bc4': tf.Variable(tf.truncated_normal([64], stddev=0.001)),
+    'bc5': tf.Variable(tf.truncated_normal([32], stddev=0.001)),
+    'bc6': tf.Variable(tf.truncated_normal([2], stddev=0.001))
+
+}
+
+
+
+def Construct_FC(global_cnn_output):
+
+    global FC_Out
+    features = tf.reshape(global_cnn_output,shape=[-1,512*7*7])
+    # haneb2a negarrb 1
+
+    features = tf.matmul(features,FC_Weight['wf1']) + FC_Biases['bf1']
+    features=tf.nn.relu(features)
+
+    features = tf.matmul(features,FC_Weight['wf2']) + FC_Biases['bf2']
+    features=tf.nn.relu(features)
+
+    features = tf.matmul(features,FC_Weight['wf3']) + FC_Biases['bf3']
+    features=tf.nn.relu(features)
+
+    FC_Out=features
+
+    return features
+
+
+def Construct_Fusion(mid_output,global_output):
+    global_output = tf.tile(global_output, [1, 28*28])
+    global_output= tf.reshape(global_output, [BatchSize, 28, 28, 256])
+    Fusion_output = tf.concat([mid_output, global_output], 3)
+    return Fusion_output
 
 def Normlization(Value,MinVale,MaxValue):
     '''
@@ -130,30 +182,24 @@ def Construct_Graph(input):
     globalconv3=tf.nn.relu(tf.nn.conv2d(input=globalconv2, filter=Global_Weight['wg3'], strides=[1, 2, 2, 1], padding='SAME')+Global_Biases['bg3'])
     globalconv4=tf.nn.relu(tf.nn.conv2d(input=globalconv3, filter=Global_Weight['wg4'], strides=[1, 1, 1, 1], padding='SAME')+Global_Biases['bg4'])
 
+    Fuse=Construct_Fusion(midconv2,FC_Out)
+
+    colconv1=tf.nn.relu(tf.nn.conv2d(input=Fuse,filter=ColorNet_Weight['wc1'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc1'])
+    colconv2=tf.nn.relu(tf.nn.conv2d(input=colconv1,filter=ColorNet_Weight['wc2'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc2'])
+    colconv3=tf.nn.relu(tf.nn.conv2d(input=colconv2,filter=ColorNet_Weight['wc3'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc3'])
+    colconv4=tf.nn.relu(tf.nn.conv2d(input=colconv3,filter=ColorNet_Weight['wc4'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc4'])
+    colconv4_UpSample=tf.image.resize_nearest_neighbor(colconv4,[112,112])
+    colconv5=tf.nn.relu(tf.nn.conv2d(input=colconv4_UpSample,filter=ColorNet_Weight['wc5'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc5'])
+    colconv6=tf.nn.relu(tf.nn.conv2d(input=colconv5,filter=ColorNet_Weight['wc6'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc6'])
+
+    output=tf.image.resize_nearest_neighbor(colconv6,[224,224])
+
+    return  output
 
 
 
 
-def Construct_FC(global_cnn_output):
-
-    features = tf.reshape(global_cnn_output,shape=[-1,512*7*7])
-    # haneb2a negarrb 1
-
-    features = tf.matmul(features,FC_Weight['wf1']) + FC_Biases['bf1']
-    features=tf.nn.relu(features)
-
-    features = tf.matmul(features,FC_Weight['wf2']) + FC_Biases['bf2']
-    features=tf.nn.relu(features)
-
-    features = tf.matmul(features,FC_Weight['wf3']) + FC_Biases['bf3']
-    features=tf.nn.relu(features)
-
-    return features
 
 
-def Construct_Fusion(mid_output,global_output):
-    global_output = tf.tile(global_output, [1, 28*28])
-    global_output= tf.reshape(global_output, [BatchSize, 28, 28, 256])
-    Fusion_output = tf.concat([mid_output, global_output], 3)
-    return Fusion_output
+
 
