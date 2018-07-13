@@ -24,6 +24,9 @@ GreyChannels = 1
 ML_OUTPUT = None
 Fusion_output = None
 FC_Out=None
+CImages_Path='Data/Colored'
+GImages_Path='Data/Grey'
+idx=1
 
 Low_Weight = {
     'wl1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.001)),
@@ -168,27 +171,12 @@ def Normlization(Value,MinVale,MaxValue):
     return Value
 
 def DeNormlization(Value,MinVale,MaxValue):
-    '''
-    normalize the Input
-    :param value: pixl value
-    :param MinVale:Old min Vale
-    :param MaxValue: Old Max vale
-    :return: Normailed Input between 128 -128
-    '''
     MinNormalizeValue = -128
     MaxNormalizeVale = 128
     Value = MinNormalizeValue + (((MaxNormalizeVale-MinNormalizeValue)*(Value- MinVale))/(MaxValue-MinVale))
     return Value
 
 def F_Norm(Tens):
-    '''
-    Caclutes the Frobenius Normalization using this Formula
-    sqrt(sum(each values**2))
-    #https://en.wikipedia.org/wiki/Frobenius_normal_form
-
-    :param Tens: tf tensor
-    :return: Frobenius Normalization of the tensor
-    '''
     return tf.reduce_sum(input_tensor=Tens**2)**0.5
 
 
@@ -210,22 +198,32 @@ def Construct_Graph(input):
     globalconv3=tf.nn.relu(tf.nn.conv2d(input=globalconv2, filter=Global_Weight['wg3'], strides=[1, 2, 2, 1], padding='SAME')+Global_Biases['bg3'])
     globalconv4=tf.nn.relu(tf.nn.conv2d(input=globalconv3, filter=Global_Weight['wg4'], strides=[1, 1, 1, 1], padding='SAME')+Global_Biases['bg4'])
 
-    Fuse=Construct_Fusion(midconv2,FC_Out)
+    Fuse = Construct_Fusion(midconv2, FC_Out)
 
-    colconv1=tf.nn.relu(tf.nn.conv2d(input=Fuse,filter=ColorNet_Weight['wc1'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc1'])
-    colconv2=tf.nn.relu(tf.nn.conv2d(input=colconv1,filter=ColorNet_Weight['wc2'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc2'])
+    colconv1 = tf.nn.relu(tf.nn.conv2d(input=Fuse,filter=ColorNet_Weight['wc1'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc1'])
+    colconv2 = tf.nn.relu(tf.nn.conv2d(input=colconv1,filter=ColorNet_Weight['wc2'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc2'])
     colconv2_UpSample = tf.image.resize_nearest_neighbor(colconv2, [56, 56])
-    colconv3=tf.nn.relu(tf.nn.conv2d(input=colconv2_UpSample,filter=ColorNet_Weight['wc3'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc3'])
-    colconv4=tf.nn.relu(tf.nn.conv2d(input=colconv3,filter=ColorNet_Weight['wc4'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc4'])
-    colconv4_UpSample=tf.image.resize_nearest_neighbor(colconv4,[112,112])
-    colconv5=tf.nn.relu(tf.nn.conv2d(input=colconv4_UpSample,filter=ColorNet_Weight['wc5'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc5'])
-    colconv6=tf.nn.relu(tf.nn.conv2d(input=colconv5,filter=ColorNet_Weight['wc6'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc6'])
+    colconv3 = tf.nn.relu(tf.nn.conv2d(input=colconv2_UpSample,filter=ColorNet_Weight['wc3'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc3'])
+    colconv4 = tf.nn.relu(tf.nn.conv2d(input=colconv3,filter=ColorNet_Weight['wc4'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc4'])
+    colconv4_UpSample = tf.image.resize_nearest_neighbor(colconv4,[112,112])
+    colconv5 = tf.nn.relu(tf.nn.conv2d(input=colconv4_UpSample,filter=ColorNet_Weight['wc5'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc5'])
+    colconv6 = tf.nn.relu(tf.nn.conv2d(input=colconv5,filter=ColorNet_Weight['wc6'],strides=[1,1,1,1],padding='SAME')+ColorNet_Biases['bc6'])
 
     output=tf.image.resize_nearest_neighbor(colconv6,[224,224])
 
     return  output
 
-
+def Load_Batch():
+    GreyImages_List=[]
+    ColorImages_List=[]
+    for i in range(BatchSize):
+        Color = Image.open(CImages_Path+str(idx)+'.jpg')
+        ColorImages_List.append(Color)
+        Grey = Image.open(GImages_Path+str(idx)+'.jpg')
+        Converted=np.asanyarray(Grey)
+        Converted=Converted.reshape(np.shape(Converted)[0],np.shape(Converted)[1],1)
+        GreyImages_List.append(Converted)
+        idx=idx+1
 
 
 
