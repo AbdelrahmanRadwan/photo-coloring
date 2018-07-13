@@ -24,8 +24,8 @@ GreyChannels = 1
 ML_OUTPUT = None
 Fusion_output = None
 FC_Out=None
-CImages_Path='data/colored/'
-GImages_Path='data/grey/'
+CImages_Path='../data/colored/'
+GImages_Path='../data/grey/'
 idx=1
 
 sess=tf.InteractiveSession()
@@ -124,13 +124,13 @@ def Construct_FC(global_cnn_output):
     # haneb2a negarrb 1
 
     features = tf.add( tf.matmul(features,FC_Weight['wf1']),FC_Biases['bf1'])
-    features=tf.nn.relu(features)
+    features = tf.nn.relu(features)
 
     features = tf.add(tf.matmul(features,FC_Weight['wf2']), FC_Biases['bf2'])
-    features=tf.nn.relu(features)
+    features = tf.nn.relu(features)
 
     features = tf.add( tf.matmul(features,FC_Weight['wf3']) ,FC_Biases['bf3'])
-    features=tf.nn.relu(features)
+    features = tf.nn.relu(features)
 
     FC_Out=features
     print("Finished constructing fully connected")
@@ -258,7 +258,7 @@ def Training_Model():
     AB_Original=tf.placeholder(tf.float32, [None, 224, 224, 2])
     Prediction = Construct_Graph(Input)
     MSE = tf.reduce_mean(F_Norm(tf.subtract(Prediction, AB_Original)))
-    optim=tf.train.AdadeltaOptimizer(learning_rate=1e-5).minimize(MSE)
+    optim=tf.train.AdamOptimizer(learning_rate=1e-5).minimize(MSE)
     sess.run(tf.global_variables_initializer())
 
     #saver = tf.train.Saver()
