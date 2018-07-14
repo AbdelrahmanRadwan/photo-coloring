@@ -434,15 +434,14 @@ def VideoToFrames():
 
 def Test():
     saver = tf.train.Saver()
-    saver = tf.train.import_meta_graph('model/our_model.meta')
-    saver.restore(sess, 'model/our_model')
+    saver = tf.train.import_meta_graph('../model/our_model.meta')
+    saver.restore(sess, '../model/our_model')
 
     for ind in range(1,2):
         GreyImages_Batch = []
-        Grey_img = Image.open(r'123456.jpg')
+        Grey_img = Image.open(r'../data/grey/1.jpg')
 
         Grey_img = Grey_img.convert("L")
-        Grey_img.save("original.jpg")
         Grey_img = Grey_img.resize((224, 224), Image.NEAREST)  # use nearest neighbour
         print(Grey_img)
 
@@ -470,7 +469,7 @@ def Test():
         #print(np.amin(NewImg),"\n\n")
         NewImg = color.lab2rgb(NewImg)
         #print("after RGB now: ",np.amin(NewImg),"\n\n")
-        ground_truth_image=Image.open(r'123456.jpg')
+        ground_truth_image =  Image.open(r'../data/colored/1.jpg')
         difference = 0.0
         ground_truth_image = ground_truth_image.convert('RGB')
         gray_ground_truth_image = ground_truth_image.convert('L')
@@ -584,8 +583,8 @@ def compare_images(img1, img2):
 
 
 #-------------------------------------------------------------------------------
-Train()
-#Test()
+#Train()
+Test()
 #TestVideo()
 #MakeVideo()
 #TestSingleImage()
