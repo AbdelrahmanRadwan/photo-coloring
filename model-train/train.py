@@ -17,15 +17,16 @@ GreyImages_List = []
 ColorImages_List = []
 BatchSize = 1
 BatchIdx = 1
-Epochs = 200
-ExamplesNum = 3447    # Number of all Images in Db Dir
+Epochs = 100
+ExamplesNum = 3447   # Number of all Images in Db Dir
 Imgsize = 224, 224
 GreyChannels = 1
 ML_OUTPUT = None
 Fusion_output = None
 FC_Out=None
-CImages_Path='../data/colored/'
-GImages_Path='../data/grey/'
+CImages_Path='../data/Training-Data/colored/'
+GImages_Path='../data/Training-Data/grey/'
+Test_Path='../data/Test-Data/test_grey/'
 idx=1
 
 sess=tf.InteractiveSession()
@@ -118,7 +119,7 @@ ColorNet_Biases={
 
 def Construct_FC(global_cnn_output):
 
-    print("constructing fully connected ")
+    #print("constructing fully connected ")
     global FC_Out
     features = tf.reshape(global_cnn_output,shape=[-1,512*7*7])
     # haneb2a negarrb 1
@@ -133,24 +134,24 @@ def Construct_FC(global_cnn_output):
     features = tf.nn.relu(features)
 
     FC_Out=features
-    print("Finished constructing fully connected")
-    print("class = ",type(FC_Out))
+    #print("Finished constructing fully connected")
+    #print("class = ",type(FC_Out))
     return features
 
 
 def Construct_Fusion(mid_output,global_output):
-    print("constructing fusion started")
+    #print("constructing fusion started")
     global BatchSize
     global_output = tf.tile(global_output, [1, 28*28])
     global_output= tf.reshape(global_output, [BatchSize, 28, 28, 256])
     Fusion_output = tf.concat([mid_output, global_output], 3)
-    print("constructing fusion finished")
+    #print("constructing fusion finished")
     return Fusion_output
 
 
 
 def Get_Chrominance():
-    print("getting chromincance")
+    #print("getting chromincance")
     global AbColors_values
     global ColorImages_List
     global BatchSize
@@ -159,13 +160,13 @@ def Get_Chrominance():
 
     for i in range (BatchSize):
         colored=color.rgb2lab(ColorImages_List[i])
-        AbColors_values[i,:,:,0]=Normlization(colored[:,:,1],-128,128)
-        AbColors_values[i,:,:,1]=Normlization(colored[:,:,2],-128,128)
-    print("Done with chormincace")
+        AbColors_values[i,:,:,0]=Normlization(colored[:,:,1],-128,128,0,1)
+        AbColors_values[i,:,:,1]=Normlization(colored[:,:,2],-128,128,0,1)
+    #print("Done with chormincace")
 
 
 
-def Normlization(Value,MinVale,MaxValue):
+def Normlization(Value,MinVale,MaxValue,MinNormalizeValue,MaxNormalizeVale):
     '''
     normalize the Input
     :param value: pixl value
@@ -173,14 +174,19 @@ def Normlization(Value,MinVale,MaxValue):
     :param MaxValue: Old Max vale
     :return: Normailed Input between 0 1
     '''
-    MinNormalizeValue = 0
-    MaxNormalizeVale = 1
     Value = MinNormalizeValue + (((MaxNormalizeVale-MinNormalizeValue)*(Value- MinVale))/(MaxValue-MinVale))
     return Value
 
-def DeNormlization(Value,MinVale,MaxValue):
-    MinNormalizeValue = -128
-    MaxNormalizeVale = 128
+def DeNormlization(Value,MinVale,MaxValue,MinNormalizeValue,MaxNormalizeVale ):
+    '''
+
+    :param Value:
+    :param MinVale:
+    :param MaxValue:
+    :param MinNormalizeValue:
+    :param MaxNormalizeVale:
+    :return:
+    '''
     Value = MinNormalizeValue + (((MaxNormalizeVale-MinNormalizeValue)*(Value- MinVale))/(MaxValue-MinVale))
     return Value
 
@@ -230,7 +236,8 @@ def Load_Batch():
     global BatchSize
     GreyImages_List=[]
     ColorImages_List=[]
-    for i in range(BatchSize):
+    diff=ExamplesNum-idx
+    for i in range(min(BatchSize,diff+1)):
         Color = Image.open(CImages_Path+str(idx)+'.jpg')
         #print("loading colored image idx =" + str(idx) + ' shape = ', tf.shape(Color))
         #Color.show()
@@ -242,7 +249,6 @@ def Load_Batch():
         Converted=Converted.reshape(np.shape(Converted)[0],np.shape(Converted)[1],1)
         GreyImages_List.append(Converted)
         idx=idx+1
-    Get_Chrominance()
     return GreyImages_List
 
 
@@ -257,23 +263,57 @@ def Training_Model():
     Input = tf.placeholder(tf.float32, [None, 224, 224, 1])
     AB_Original=tf.placeholder(tf.float32, [None, 224, 224, 2])
     Prediction = Construct_Graph(Input)
+    print(Prediction)
     MSE = tf.reduce_mean(F_Norm(tf.subtract(Prediction, AB_Original)))
     optim=tf.train.AdamOptimizer(learning_rate=1e-5).minimize(MSE)
     sess.run(tf.global_variables_initializer())
+    saver = tf.train.Saver()
+    saver = tf.train.import_meta_graph('../Models/Model.meta')
+    saver.restore(sess, '../Models/Model')
 
-    #saver = tf.train.Saver()
-    #saver = tf.train.import_meta_graph('/Models')
-    #saver.restore(sess, '/Models')
 
     for i in range(Epochs):
         loss=0
         turns = int(ExamplesNum/BatchSize)
+        idx=1
         for j in range(turns):
-            print(" epo = "+str(i)+" example = "+str(j))
+            print("Batch = ",j)
             Load_Batch()
+            Get_Chrominance()
             a, c =sess.run([optim, MSE],feed_dict={Input:GreyImages_List, AB_Original:AbColors_values})
             loss+=c
-        print("Epoch :",i+1,"Loss is: ",loss)
-    #saver.save(sess,"/Models",write_meta_graph=False)
+        print("Epoch :", i+1,"Loss is: ",loss)
+        saver.save(sess, "../Models/Model")
+
+def Test(num_of_photos, names):
+    saver = tf.train.Saver()
+    saver = tf.train.import_meta_graph('../Models/Model.meta')
+    saver.restore(sess, '../Models/Model')
+    for i in range(0,num_of_photos):
+        Feeder=[]
+        Ground_Truth = Image.open(Test_Path+str(names[i])+'.jpg')
+        Test_Image = Ground_Truth.resize((224,224), Image.NEAREST)
+        Test_Image = np.asanyarray(Test_Image)
+        shape=Test_Image.shape
+        Test_Image = Test_Image.reshape(shape[0], shape[1], 1)
+        Feeder.append(Test_Image)
+        Images_PlaceHoder=tf.placeholder(dtype=tf.float32,shape=[1,224,224,1])
+        Output=Construct_Graph(Images_PlaceHoder)
+        Colors = sess.run(Output, feed_dict={Images_PlaceHoder:Feeder})
+        Colorized_Image=np.empty((224,224,3))
+        for i in range(224):
+            for j in range(224):
+                Colorized_Image[i,j,0] = DeNormlization(Test_Image[i,j,0],0,255,0,100)
+        Colorized_Image[:,:,1] = DeNormlization(Colors[0,:,:,0],0,1,-128,128)
+        Colorized_Image[:,:,2]=DeNormlization(Colors[0,:,:,1],0,1,-128,128)
+        Colorized_Image=color.lab2rgb(Colorized_Image)
+        Ground_Truth.show()
+        plt.imshow(Colorized_Image)
+        plt.show()
+        plt.imsave('../data/Test-Data/predicted/'+i+'.jpg',Colorized_Image)
+        #Grey_Colorized_Image=color.rgb2gray(Colorized_Image)
+        #Numpy_Grey_Colorized=np.asarray(Image.fromarray(Grey_Colorized_Image,'L'),dtype="float")
+        #Numpy_Ground_Truth=np.asarray(Image.fromarray(Ground_Truth,'L'),dtype="float")
 
 Training_Model()
+#Test(3,['1','2','3'])
