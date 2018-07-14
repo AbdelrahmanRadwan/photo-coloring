@@ -4,22 +4,14 @@ A Deep Learning based coloring tool, which can color a black-white or gray pictu
 ## Important Materials
 - [Dropbox Materials](https://www.dropbox.com/home/photo-coloring): Add the papers, source codes and any other useful materials over there.
 
-## Tasks:
+## evaluate the model, how to calculate the accuracy of the results:
+<a href="https://www.youtube.com/playlist?list=PLp5bmfO_JaNZan0v0-t1X0La0FpexUQ8N"> Week 6 Andrew NG
+Model Evaluation & Metrics
+</a>
+<a href="https://classroom.udacity.com/courses/ud120">Module 12 &15 and Module 14 for Validation </a>
+<a href="https://medium.com/@rishavsapahia/5-min-recap-for-andrew-ng-deep-learning-specialization-course-3-90e89a332b0c">Deep learning By Andrew NG Summary</a>
 
-#### Tasks
-1. Study CNN, proposed resources:
-- http://cs231n.github.io/convolutional-networks/ 
-- https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html 
-- https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/ 
-- https://www.youtube.com/watch?v=Gu0MkmynWkw 
-
-2. Study GAN
-
-3. Read and summarize the following papers:
-- [Colorization using CNN](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/en/).
-- [Colorization using GAN](https://www.dropbox.com/home/photo-coloring/Papers/Karim%20El%20Ghazouly/Colorization%20using%20GAN?preview=1803.05400.pdf).
-
-4. Find source code and proper implementation for the above two papers, understand it, and learn how to learn and enhance it. 
-
-5. Search for good resources to study and learn GAN and CNN, and share it with others.
+## CNN Course
+<a href="https://www.coursera.org/learn/convolutional-neural-networks">Convolutional Neural Networks
+</a>
 
