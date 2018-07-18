@@ -3,8 +3,24 @@
 <head>
 <title>Upload</title>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
+
 </head>
+<style>
+.EditFont{
+    font-family: 'Chela One', cursive;
+}
+</style>
 <body>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="EditFont text-center">Modern di Vinci</h1>
+    <p>This is a DeepLearning model to Color Grey scale images.</p>
+  </div>
 
 <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
 
@@ -13,6 +29,12 @@
     <div id="msg"></div>
     <input type="submit" value="Upload!" id="upload-button">
 </form>
+
+</div>
+
+
+
+
 </body>
 <script>
 //To check if the file is avalibe
