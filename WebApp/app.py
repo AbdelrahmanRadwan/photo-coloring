@@ -1,9 +1,18 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request , redirect , url_for
 
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def delete_images(folder):
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(e) #Rabna ma ygyb Erorr
 
 @app.route("/")
 def index():
@@ -12,7 +21,7 @@ def index():
 @app.route("/upload", methods=['POST'])
 def upload():
     target = os.path.join(APP_ROOT, 'static/')
-
+    delete_images(target)
     if not os.path.isdir(target):
         os.mkdir(target)
 
@@ -28,6 +37,16 @@ def get_gallery():
     image_names = os.listdir('static/')
     print(image_names)
     return render_template("gallery.html", image_names=image_names)
+
+
+@app.route('/delete_img/<string:Imagename>/', methods=['GET', 'POST'])
+def delete_img(Imagename):
+    X = Imagename
+    #item = self.session.query(Item).get(item_id)
+    os.remove(os.path.join(app.config['static'],X ))
+    #self.session.delete(item)
+    #db.session.commit()
+    return redirect(url_for('admin_items'))
 
 
 if __name__ == "__main__":
