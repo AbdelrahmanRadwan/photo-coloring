@@ -39,15 +39,5 @@ def get_gallery():
     return render_template("gallery.html", image_names=image_names)
 
 
-@app.route('/delete_img/<string:Imagename>/', methods=['GET', 'POST'])
-def delete_img(Imagename):
-    X = Imagename
-    #item = self.session.query(Item).get(item_id)
-    os.remove(os.path.join(app.config['static'],X ))
-    #self.session.delete(item)
-    #db.session.commit()
-    return redirect(url_for('admin_items'))
-
-
 if __name__ == "__main__":
     app.run()
