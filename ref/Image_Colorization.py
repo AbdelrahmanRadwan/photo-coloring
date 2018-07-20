@@ -434,15 +434,12 @@ def VideoToFrames():
 
 def Test():
     saver = tf.train.Saver()
-    saver = tf.train.import_meta_graph('../Models/Model.meta')
-    saver.restore(sess, '../Models/Model')
 
     for ind in range(1,2):
         GreyImages_Batch = []
         Grey_img = Image.open('../data/test_grey/1.jpg')
 
         Grey_img = Grey_img.convert("L")
-        Grey_img.save("original.jpg")
         Grey_img = Grey_img.resize((224, 224), Image.NEAREST)  # use nearest neighbour
         print(Grey_img)
 
