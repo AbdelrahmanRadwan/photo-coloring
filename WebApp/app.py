@@ -1,8 +1,11 @@
 import os
-from flask import Flask, render_template, request , redirect , url_for
+from flask import (Flask,
+                   render_template,
+                   request)
+
+from temp import dummyfun
 
 app = Flask(__name__)
-
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 def delete_images(folder):
@@ -16,12 +19,15 @@ def delete_images(folder):
 
 @app.route("/")
 def index():
+    #delete_images(os.path.join(APP_ROOT, 'static/'))
     return render_template("upload.html")
 
-@app.route("/upload", methods=['POST'])
+
+@app.route("/upload", methods=['POST','GET'])
 def upload():
+    global destination
     target = os.path.join(APP_ROOT, 'static/')
-    delete_images(target)
+    # delete_images(target)
     if not os.path.isdir(target):
         os.mkdir(target)
 
@@ -29,24 +35,17 @@ def upload():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
+
 #    print(filename)
-    return render_template("complete.html",value=filename)
+    dummyfun(destination)
+    return render_template("complete.html", value=filename)
+
 
 @app.route('/gallery')
 def get_gallery():
     image_names = os.listdir('static/')
     print(image_names)
     return render_template("gallery.html", image_names=image_names)
-
-
-@app.route('/delete_img/<string:Imagename>/', methods=['GET', 'POST'])
-def delete_img(Imagename):
-    X = Imagename
-    #item = self.session.query(Item).get(item_id)
-    os.remove(os.path.join(app.config['static'],X ))
-    #self.session.delete(item)
-    #db.session.commit()
-    return redirect(url_for('admin_items'))
 
 
 if __name__ == "__main__":
