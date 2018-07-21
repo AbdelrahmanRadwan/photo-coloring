@@ -9,4 +9,4 @@ def dummy_fun(img):
     """
     print("Hello from a Other File")
     X = Image.open(img)
-    X.save("static/{}".format(random.randint(0,10000000000)), "JPEG")
+    X.save("images/{}".format(random.randint(0,10000000000)), "JPEG")

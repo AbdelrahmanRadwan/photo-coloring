@@ -30,7 +30,7 @@ def index():
     """
     :return: Render the main Page
     """
-    delete_images(os.path.join(APP_ROOT, 'static/'))
+    delete_images(os.path.join(APP_ROOT, 'images/'))
     return render_template("upload.html")
 
 
@@ -41,7 +41,7 @@ def upload_image():
     :return:
     """
     global destination
-    target = os.path.join(APP_ROOT, 'static/')
+    target = os.path.join(APP_ROOT, 'images/')
     # delete_images(target)
     if not os.path.isdir(target):
         os.mkdir(target)
@@ -60,9 +60,12 @@ def display_all_images():
     """
     :return: Render all Images in Static Folder
     """
-    image_names = os.listdir('static/')
-    print(image_names)
-    return render_template("gallery.html", image_names=image_names)
+    image_names = os.listdir('images/')
+    Images = list()
+    for i in range(len(image_names)):
+        Images.append('/home/mostafa/photo-coloring/WebApp/images/'+str(image_names[i]))
+    print(Images)
+    return render_template("gallery.html", image_names=Images)
 
 
 if __name__ == "__main__":
