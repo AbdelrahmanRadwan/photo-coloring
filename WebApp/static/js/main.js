@@ -20,5 +20,4 @@ $("#file-picker").change(function(){
 
     }
 
-
 } );

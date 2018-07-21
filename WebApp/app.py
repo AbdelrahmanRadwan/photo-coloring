@@ -4,12 +4,10 @@ from flask import (Flask,
                    request,
                    send_from_directory)
 
-from temp import dummy_fun
+from temp import duplicate_img
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-PEOPLE_FOLDER = os.path.join('static', 'pics')
-app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 def delete_images(folder):
     """
@@ -21,8 +19,11 @@ def delete_images(folder):
         try:
             if os.path.isfile(file_path):
                 os.unlink(file_path)
-        except Exception as e:
-            print(e)
+
+        except Exception as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            print(message)
 
 
 @app.route("/")
@@ -32,19 +33,19 @@ def index():
     """
     :return: Render the main Page
     """
-    #delete_images(os.path.join(APP_ROOT, 'static/pics/'))
-    return render_template("upload.html")
+    delete_images(os.path.join(APP_ROOT, 'static/pics/'))
+    return render_template("index.html")
 
 
 @app.route("/upload", methods=['POST'])
 def upload_image():
     """
-    Upload Images  to the Static Folder
+    Upload Images to the Static Folder
     :return:
     """
     global destination
     target = os.path.join(APP_ROOT, 'static/pics/')
-    #delete_images(target)
+    delete_images(target)
     if not os.path.isdir(target):
         os.mkdir(target)
 
@@ -53,7 +54,7 @@ def upload_image():
         destination = "/".join([target, filename])
         file.save(destination)
 
-    dummy_fun(target+filename)
+    duplicate_img(target+filename)
     return render_template("complete.html", value=filename)
 
 
@@ -65,11 +66,11 @@ def send_image(filename):
 @app.route('/gallery')
 def get_gallery():
     """
-    Display all images in floder
+    Display all images in folder
     """
     image_names = os.listdir('static/pics')
     print(image_names)
-    return render_template("gallery.html", image_names=image_names)
+    return render_template("DisplayAll.html", image_names=image_names)
 
 
 if __name__ == "__main__":
