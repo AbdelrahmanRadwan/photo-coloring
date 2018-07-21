@@ -8,5 +8,5 @@ def dummy_fun(img):
     :return: Save an image duplicate in static folder
     """
     print("Hello from a Other File")
-    X = Image.open(img)
-    X.save("images/{}".format(random.randint(0,10000000000)), "JPEG")
+    x = Image.open(img)
+    x.save("static/pics/{}".format(random.randint(0,10000000000)), "JPEG")
