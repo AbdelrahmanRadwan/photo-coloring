@@ -1,7 +1,0 @@
-You need to download siggraph model first by running download_model.sh
-it's found in this paper
-https://github.com/satoshiiizuka/siggraph2016_colorization
-first picture shows up is for Algorithmia model
-found in this paper
-https://github.com/richzhang/colorization
-second for the siggraph model

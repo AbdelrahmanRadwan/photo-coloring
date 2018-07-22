@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/bootstrap.min.css')}}">
+
+</head>
+<body>
+
+
+<div class="landing">
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header text-center" style="color: #f46f25">Result</h1>
+        </div>
+        <h3 style="color: #985f0d">{{image_names}}</h3>
+        <hr>
+        {% for image_name in image_names %}
+
+            <img class="img-thumbnail" width="350px" height="350px" style="margin-left: 90px;" src=" {{url_for('send_image', filename=image_name)}}">
+
+        {% endfor %}
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</div>
+</body>
+</html>
