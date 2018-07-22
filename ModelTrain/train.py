@@ -15,7 +15,7 @@ num_of_video_frames = 0
 AbColors_values = None
 GreyImages_List = []
 ColorImages_List = []
-BatchSize = 20
+BatchSize = 1
 BatchIdx = 1
 Epochs = 100
 ExamplesNum = 90000   # Number of all Images in Db Dir
@@ -299,11 +299,12 @@ def Test(names):
         Colorized_Image[:,:,1] = DeNormlization(Colors[0,:,:,0],0,1,-128,128)
         Colorized_Image[:,:,2]=DeNormlization(Colors[0,:,:,1],0,1,-128,128)
         Colorized_Image=color.lab2rgb(Colorized_Image)
-        Original = Image.open(Ori_Path+img+'.jpg')
-        Original.show()
+        #Original = Image.open(Ori_Path+img+'.jpg')
+        #Original.show()
         plt.imshow(Colorized_Image)
         plt.show()
         plt.imsave('../data/Test/predicted/'+str(img)+'.jpg',Colorized_Image)
 
-Training_Model()
-#Test(['1','2','12','5','4','3'])
+#Training_Model()
+Test(['ss'])
+
