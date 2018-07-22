@@ -9,11 +9,11 @@
 </head>
 <style>
 #button {
-    width: 6em;
-    border: 2px solid green;
+    width: 16em;
+    border: 4px solid green;
     background: #ffe;
     border-radius: 5px;
-}
+   }
 a {
     display: block;
     width: 100%;
@@ -27,26 +27,27 @@ a:hover {
     background: #eff;
 }
     #buttton {
-    width: 6em;
-    border: 2px solid slateblue;
+    width: 16em;
+    border: 4px solid slateblue;
     background: #ffe;
     border-radius: 5px;
-}
+    }
 
 </style>
 
 <body>
 <div class="landing">
+<h3 style="color: #f46f25; margin-left: 700px;" >you Uploaded this image {{ value }}
+    <br> are your sure to continue ? </h3>
 
-Uploaded in the static folder ya basher :D
-<h4>{{ value }}</h4>
-<!--<img src="{{url_for('static',filename='.jpg')}}">-->
-<div id="button"><a href="gallery">show</a></div>
-<div id="buttton"><a href="/">retun</a></div>
+<div id="button" style="margin-left: 700px;"><a href="gallery">show Result</a></div>
+<div id="buttton" style="margin-left: 700px;" ><a href="/">Return</a></div>
+
+
 </div>
+
+</body>
 <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-</body>
 </html>
