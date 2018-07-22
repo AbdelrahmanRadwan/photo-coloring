@@ -304,7 +304,7 @@ def Test(names):
         plt.imshow(Colorized_Image)
         plt.show()
         plt.imsave('../data/Test/predicted/'+str(img)+'.jpg',Colorized_Image)
-
-#Training_Model()
-Test(['ss'])
+if __name__ == "__main__":
+    #Training_Model()
+    Test(['ss'])
 
