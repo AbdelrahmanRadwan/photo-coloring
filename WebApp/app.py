@@ -4,6 +4,7 @@ from flask import (Flask,
                    request,
                    send_from_directory)
 
+import modeltrain.train as testing
 from temp import duplicate_img
 
 app = Flask(__name__)
@@ -53,9 +54,11 @@ def upload_image():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
-
-    duplicate_img(target+filename)
+    testing.Test(filename)
+#    duplicate_img(target+filename)
     return render_template("complete.html", value=filename)
+
+
 
 
 @app.route('/upload/<filename>')

@@ -21,7 +21,7 @@
         <h4>Upload <span>Your Image</span></h4>
       <form id="upload-form" action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
        <div class="col-md-6">
-        <input id="file-picker" type="file" name="file" accept="image/*" multiple class="file-picker">
+        <input id="file-picker" type="file" name="file" accept="video/*|image/*"   multiple class="file-picker">
         </div>
         <div class="col-md-6 text-center">
           <div id="msg"></div>
@@ -30,6 +30,7 @@
          <input type="submit" value="Upload!" id="upload-button" class="btn-block lol">
         </div>
     </form>
+
 </div>
 </div>
     </div>

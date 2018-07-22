@@ -8,7 +8,7 @@ $("#file-picker").change(function(){
     //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
         var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
 
-        if ((ext == 'jpg') || (ext == 'png'))
+        if ((ext == 'jpg') || (ext == 'png')||(ext == 'mp4'))
         {
             $("#msg").html('<div class="alert alert-success" role="alert"><strong>File is supported</strong> </div>')
         }

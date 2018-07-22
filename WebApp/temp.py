@@ -4,7 +4,7 @@ import os
 
 def duplicate_img(img):
     """
-    :param img: Imgae Path
+    :param img: image Path
     :return: Save an image duplicate in static folder
     """
     x = Image.open(img)
