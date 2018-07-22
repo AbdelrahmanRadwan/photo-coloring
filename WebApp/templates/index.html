@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+<link href="https://fonts.googleapis.com/css?family=Aldrich|Cormorant+Unicase|Josefin+Sans|Libre+Barcode+128+Text|Nunito+Sans|Orbitron|Playfair+Display+SC" rel="stylesheet"> 
+<link rel="stylesheet" href="{{url_for('static',filename ='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/bootstrap.min.css')}}">
+</head>
+<body>
+<div class="landing">
+ <div class="overlay">
+  <div class="container">
+    <div class="about">
+      <h1 class="EditFont text-center">Modern <span>di Vinci</span></h1>
+      <p>This is a DeepLearning model to Color Grey scale images.</p>
+    </div>
+    <div class="row">
+    <div class="col-xs-12">
+    <div class="form-con">
+        <div class="row">
+        <h4>Upload <span>Your Image</span></h4>
+      <form id="upload-form" action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
+       <div class="col-md-6">
+        <input id="file-picker" type="file" name="file" accept="video/*|image/*"   multiple class="file-picker">
+        </div>
+        <div class="col-md-6 text-center">
+          <div id="msg"></div>
+        </div>
+        <div class="col-xs-12 btn-space">
+         <input type="submit" value="Upload!" id="upload-button" class="btn-block lol">
+        </div>
+    </form>
+
+</div>
+</div>
+    </div>
+    </div>
+  </div>
+ </div>
+</div>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

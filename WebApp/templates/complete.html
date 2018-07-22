@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename ='css/bootstrap.min.css')}}">
+
 </head>
+<style>
+#button {
+    width: 6em;
+    border: 2px solid green;
+    background: #ffe;
+    border-radius: 5px;
+}
+a {
+    display: block;
+    width: 100%;
+    line-height: 2em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+a:hover {
+    color: red;
+    background: #eff;
+}
+    #buttton {
+    width: 6em;
+    border: 2px solid slateblue;
+    background: #ffe;
+    border-radius: 5px;
+}
+
+</style>
+
 <body>
+<div class="landing">
+
 Uploaded in the static folder ya basher :D
 <h4>{{ value }}</h4>
 <!--<img src="{{url_for('static',filename='.jpg')}}">-->
+<div id="button"><a href="gallery">show</a></div>
+<div id="buttton"><a href="/">retun</a></div>
+</div>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
