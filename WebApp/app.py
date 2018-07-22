@@ -4,7 +4,7 @@ from flask import (Flask,
                    request,
                    send_from_directory)
 
-import ModelTrain.train as testing
+import modeltrain.train as testing
 from temp import duplicate_img
 
 app = Flask(__name__)

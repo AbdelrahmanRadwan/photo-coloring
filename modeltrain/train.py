@@ -326,6 +326,20 @@ def Test(name):
     tf.reset_default_graph()
 
 
+def Calcultaing_Accuracy(img1, img2):
+    dif = 0.0
+
+    for i in range(256):
+        for j in range(256):
+            diff1 = (img1[i][j][0] - img2[i][j][0])
+            diff2 = (img1[i][j][1] - img2[i][j][1])
+            diff3 = (img1[i][j][2] - img2[i][j][2])
+            print(diff1 ** 2 + diff2 ** 2 + diff3 ** 2)
+            dif += math.sqrt(diff1 ** 2 + diff2 ** 2 + diff3 ** 2)
+
+    dif = Normlization(dif, 0, 256 * 256 * 255, 0, 100)
+    return 100 - dif
+
 if __name__ == "__main__":
     #Training_Model()
     Test('28.jpg')
