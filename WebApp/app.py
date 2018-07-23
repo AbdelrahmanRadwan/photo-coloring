@@ -54,7 +54,7 @@ def upload_image():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
-    testing.Test(filename)
+    testing.Test([filename])
 #    duplicate_img(target+filename)
     return render_template("complete.html", value=filename)
 
