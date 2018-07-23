@@ -296,16 +296,13 @@ def Training_Model():
 def Test(name):
     with g.as_default():
         Feeder=[]
-        Ground_Truth = cv2.imread('../data/Test/test_grey/ss.jpg')
+        Ground_Truth = cv2.imread('../WebApp/static/pics/'+name)
         grey = cv2.cvtColor(Ground_Truth, cv2.COLOR_BGR2GRAY)
         grey = cv2.resize(grey,(224,224))
-        print(grey.shape)
         Test_Image = grey.reshape(224, 224, 1)
         Feeder.append(Test_Image)
         Images_PlaceHoder=tf.placeholder(dtype=tf.float32, shape=[1, 224, 224, 1])
-        print(Images_PlaceHoder.graph)
         Output=Construct_Graph(Images_PlaceHoder)
-        print('5lst construct')
         sess = tf.Session(graph=g)
         saver = tf.train.Saver()
         saver = tf.train.import_meta_graph('../Models/Model.meta')
