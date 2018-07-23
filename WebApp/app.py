@@ -51,10 +51,10 @@ def upload_image():
 
     for file in request.files.getlist("file"):
         filename = file.filename
-        destination = "/".join([target, filename])
+        destination = "/".join([target, "0"+filename])
         file.save(destination)
-        
-    testing.Test([filename])
+
+    testing.Test(["0"+filename])
 
     return render_template("complete.html", value=filename)
 
@@ -74,7 +74,7 @@ def get_gallery():
     image_names = os.listdir('static/pics')
     print(image_names)
 
-    image_names.sort(reverse=True)
+    image_names.sort(reverse=False)
 
     return render_template("DisplayAll.html", image_names=image_names)
 
