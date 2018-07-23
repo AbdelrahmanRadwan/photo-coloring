@@ -5,8 +5,7 @@ from flask import (Flask,
                    send_from_directory)
 
 import modeltrain.train as testing
-from temp import duplicate_img
-from PIL import Image
+
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -54,10 +53,9 @@ def upload_image():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
-    filename
+
 
     testing.Test(filename)
-#    duplicate_img(target+filename)
     return render_template("complete.html", value=filename)
 
 
