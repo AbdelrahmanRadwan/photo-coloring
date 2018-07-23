@@ -23,7 +23,7 @@
         <hr>
         {% for image_name in image_names %}
 
-            <img class="img-thumbnail" width="350px" height="350px" style="margin-left: 90px;" src=" {{url_for('send_image', filename=image_name)}}">
+            <img class="img-thumbnail" style="width:400px;height:400px; margin-left: 90px;" src=" {{url_for('send_image', filename=image_name)}}">
 
         {% endfor %}
     </div>

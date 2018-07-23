@@ -299,6 +299,7 @@ def Test(names):
         Feeder.append(Test_Image)
         Images_PlaceHoder=tf.placeholder(dtype=tf.float32, shape=[1, 224, 224, 1])
         Output=Construct_Graph(Images_PlaceHoder)
+
         print(Test_Image.shape)
         Colors = sess.run(Output, feed_dict={Images_PlaceHoder: Feeder})
         Colorized_Image=np.empty((224,224,3))
@@ -332,6 +333,5 @@ if __name__ == "__main__":
     #Training_Model()
     Test(['tt.jpg', 'tt.jpg'])
     Test(['tt.jpg'])
-
     Test(['tt.jpg'])
     Test(['tt.jpg'])
