@@ -53,9 +53,9 @@ def upload_image():
         filename = file.filename
         destination = "/".join([target, filename])
         file.save(destination)
+        
+    testing.Test([filename])
 
-
-    testing.Test(filename)
     return render_template("complete.html", value=filename)
 
 
@@ -80,4 +80,4 @@ def get_gallery():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=False, threaded=False)
