@@ -182,7 +182,6 @@ def Normlization(Value,MinVale,MaxValue,MinNormalizeValue,MaxNormalizeVale):
 
 def DeNormlization(Value,MinVale,MaxValue,MinNormalizeValue,MaxNormalizeVale ):
     '''
-
     :param Value:
     :param MinVale:
     :param MaxValue:
@@ -331,10 +330,8 @@ def Calcultaing_Accuracy(img1, img2):
 if __name__ == "__main__":
 
     #Training_Model()
-    Test(['4.jpg', '3.jpg'])
-    Test(['4.jpg'])
+    Test(['tt.jpg', 'tt.jpg'])
+    Test(['tt.jpg'])
 
-    Test(['4.jpg'])
-    Test(['4.jpg'])
-
-
+    Test(['tt.jpg'])
+    Test(['tt.jpg'])
