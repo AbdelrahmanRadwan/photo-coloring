@@ -18,16 +18,17 @@
 
         <div class="col-lg-12">
 
-    <h3 style="color: #f46f25; margin-left: 800px; font-size: 40px; margin-top: 60px">Output</h3>
+    
 
         </div>
         <hr>
-        <h1 class="page-header text-center" style="color: #f46f25">Result</h1>
-        <h3 style="color: #f46f25; font-size: 40px; margin-top: 80px;">Input</h3
+        <h1 class="page-header text-center" style="color: #f46f25;">Result</h1>
+                <span style="color: #f46f25; margin-left: 270px; font-size: 40px;   ">Input</span>
+        <span style="color: #f46f25; margin-left: 450px; font-size: 40px; ">Output</span>
         <hr>
         {% for image_name in image_names %}
 
-            <img class="img-thumbnail" style="width:450px;height:450px; margin-left: 90px;" src=" {{url_for('send_image', filename=image_name)}}">
+            <img class="img-thumbnail" style="width:500px;height:500px; margin-left: 70px;" src=" {{url_for('send_image', filename=image_name)}}">
 
         {% endfor %}
     </div>
