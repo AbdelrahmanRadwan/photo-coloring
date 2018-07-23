@@ -73,6 +73,7 @@ def get_gallery():
     """
     image_names = os.listdir('static/pics')
     print(image_names)
+    image_names.sort(reverse=True)
     return render_template("DisplayAll.html", image_names=image_names)
 
 
