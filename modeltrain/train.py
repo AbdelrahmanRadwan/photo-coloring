@@ -296,16 +296,13 @@ def Training_Model():
 def Test(name):
     with g.as_default():
         Feeder=[]
-        Ground_Truth = Image.open(Test_Path+str(name))
-        Test_Image = Ground_Truth.resize((224,224), Image.NEAREST)
-        Test_Image = np.asanyarray(Test_Image)
-        shape=Test_Image.shape
-        Test_Image = Test_Image.reshape(shape[0], shape[1], 1)
+        Ground_Truth = cv2.imread('../WebApp/static/pics/'+name)
+        grey = cv2.cvtColor(Ground_Truth, cv2.COLOR_BGR2GRAY)
+        grey = cv2.resize(grey,(224,224))
+        Test_Image = grey.reshape(224, 224, 1)
         Feeder.append(Test_Image)
-        Images_PlaceHoder=tf.placeholder(dtype=tf.float32, shape=[1,224,224,1])
-        print(Images_PlaceHoder.graph)
+        Images_PlaceHoder=tf.placeholder(dtype=tf.float32, shape=[1, 224, 224, 1])
         Output=Construct_Graph(Images_PlaceHoder)
-        print('5lst construct')
         sess = tf.Session(graph=g)
         saver = tf.train.Saver()
         saver = tf.train.import_meta_graph('../Models/Model.meta')
@@ -320,7 +317,6 @@ def Test(name):
         Colorized_Image[:,:,2]=DeNormlization(Colors[0,:,:,1],0,1,-128,128)
         Colorized_Image=color.lab2rgb(Colorized_Image)
         plt.imshow(Colorized_Image)
-        plt.show()
         plt.imsave('../WebApp/static/pics/colored-'+str(name),Colorized_Image)
         sess.close()
     tf.reset_default_graph()
@@ -342,5 +338,5 @@ def Calcultaing_Accuracy(img1, img2):
 
 if __name__ == "__main__":
     #Training_Model()
-    Test('28.jpg')
+    Test('hoda')
 
