@@ -7,15 +7,13 @@ Colouring photos could bring you a lot of fun to your daily life. Just imagine i
 ![Example 2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/3.jpg  "Example 2")
 
 Colouring a picture with Photoshop is a so exhausting process, so we implemented this Photo coloring tool, which is based on
-
-[Let there be Color](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf)
-, it's Deep Learning based on CNN, it can color any grayscale picture with any color scale and picture resolution.
+[Let there be Color](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf), it's Deep Learning based on CNN, 
+it can color any grayscale picture with any color scale and picture resolution.
 
 💫 **Version 0.1 out now!**
 
 📖 Documentation
 ================
-
 ## How to Run
 **Install the requirements:**
 ```bash
