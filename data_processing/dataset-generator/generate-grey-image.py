@@ -18,9 +18,7 @@ def resize(folder_read, folder_save, size=(224, 224)):
         img.save ('{}/{}'.format (folder_save, save_training[single_image]))
 
 
-resize('in/','out/')
-
-
+resize('in/', 'out/')
 
 
 def Gray(folder_read, folder_save):
