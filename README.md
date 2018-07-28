@@ -1,6 +1,6 @@
 # photo-coloring
 
-![Example 1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/10.jpg  "Example 1")
+![Example 1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/10.png  "Example 1")
 Colouring photos could bring you a lot of fun to your daily life. Just imagine if you coloured your grandma’s old photo and showed it to your family, how surprised and happy they would be.
 
 ![Example 2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/3.jpg  "Example 2")
@@ -10,7 +10,7 @@ Colouring a picture with Photoshop is a so exhausting process, so we implemented
 , it's Deep Learning based on CNN, it can color any grayscale picture with any color scale and picture resolution.
 
 💫 **Version 0.1 out now!**
-    
+
 📖 Documentation
 ================
 
