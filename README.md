@@ -1,9 +1,5 @@
 # photo-coloring
 
-![Grayscale images](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/2.png  "GrayScale")
-![Arrow](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/18.png  "Arrow")
-![Colored](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/1.png  "Colored")
-
 ![Colored](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/10.png  "Colored")
 
 Colouring photos could bring you a lot of fun to your daily life. Just imagine if you coloured your grandma’s old photo and showed it to your family, how surprised and happy they would be.
