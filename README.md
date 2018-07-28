@@ -29,14 +29,14 @@ Then the endpoint will be running on http://127.0.0.1:5000/
 ## Results
 The results are not bad at all! a lot of test cases gonna be so realistic, but the model still needs more training
 
-                                              Original Image (grayscale)                                                         |                                             Resultant Image (colored)
+ Original Image (grayscale)                                                                                                       | Resultant Image (colored)
 :-------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:
 ![Example 1-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 1-1") | ![Example 1-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-2.jpg  "Example 1-2")
-![Example 2-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 2-1") | ![Example 2-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example2-2.jpg  "Example 2-2")
-![Example 3-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 3-1") | ![Example 3-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example3-2.jpg  "Example 3-2")
-![Example 4-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 4-1") | ![Example 4-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example4-2.jpg  "Example 4-2")
-![Example 5-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 5-1") | ![Example 5-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example5-2.jpg  "Example 5-2")
-![Example 6-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example1-1.jpg  "Example 6-1") | ![Example 6-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example6-2.jpg  "Example 6-2")
+![Example 2-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example2-1.jpg  "Example 2-1") | ![Example 2-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example2-2.jpg  "Example 2-2")
+![Example 3-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example3-1.jpg  "Example 3-1") | ![Example 3-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example3-2.jpg  "Example 3-2")
+![Example 4-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example4-1.jpg  "Example 4-1") | ![Example 4-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example4-2.jpg  "Example 4-2")
+![Example 5-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example5-1.jpg  "Example 5-1") | ![Example 5-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example5-2.jpg  "Example 5-2")
+![Example 6-1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example6-1.jpg  "Example 6-1") | ![Example 6-2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/Example6-2.jpg  "Example 6-2")
 
 ## Paper
 This project is an implementation of the [Let there be Color](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf), published 2016.
