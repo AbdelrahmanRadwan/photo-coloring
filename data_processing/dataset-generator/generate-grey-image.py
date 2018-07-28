@@ -18,7 +18,7 @@ def resize(folder_read, folder_save, size=(224, 224)):
         img.save ('{}/{}'.format (folder_save, save_training[single_image]))
 
 
-#resize('train/','test/')
+resize('in/','out/')
 
 
 
@@ -37,7 +37,7 @@ def Gray(folder_read, folder_save):
 
         img.save ('{}/{}'.format (folder_save, save_training[single_image]))
 
-Gray('test/','gray/')
+#Gray('test/','gray/')
 
 
 def flip_images(X_imgs):
