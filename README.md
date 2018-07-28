@@ -67,4 +67,40 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 - Extend the project to be able to colorize Videos
 
 ## References
-- http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/en/
+
+### Useful materials
+- Introduction to the problem: http://tinyclouds.org/colorize/
+- More details about the solution: http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/en/
+
+### Other related projects
+- https://github.com/pavelgonchar/colornet
+- https://github.com/OmarSayedMostafa/Deep-learning-Colorization-for-visual-media
+
+### Tutorials
+- CNN: http://cs231n.github.io/convolutional-networks/ 
+- CNN: https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html 
+- CNN: https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/ 
+- CNN: https://www.youtube.com/watch?v=Gu0MkmynWkw 
+- CNN: https://www.youtube.com/watch?v=2-Ol7ZB0MmU 
+- Deep learning: https://www.youtube.com/watch?v=He4t7Zekob0 
+
+### Shortcuts:
+- YUV: https://en.wikipedia.org/wiki/YUV 
+- CNN: https://en.wikipedia.org/wiki/Convolutional_neural_network 
+
+### CNN practice:
+- https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8 
+- http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/ 
+- http://richzhang.github.io/colorization/ 
+- https://github.com/microic/niy/tree/master/examples/colorizing_photos
+- https://www.kaggle.com/preslavrachev/wip-photo-colorization-using-keras/notebook
+- https://blog.floydhub.com/colorizing-b-w-photos-with-neural-networks/
+- https://gist.github.com/standarderror/43582e9a15038806da8a846903438ebe
+- https://github.com/coolioasjulio/Cat-Dog-CNN-Classifier
+- https://gist.github.com/standarderror/43582e9a15038806da8a846903438ebe
+- https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8 https://medium.com/@parthvadhadiya424/hello-world-program-in-keras-with-cnn-dog-vs-cat-classification-efc6f0da3cc5
+
+
+
+
+
