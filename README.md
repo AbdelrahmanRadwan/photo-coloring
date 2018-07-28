@@ -1,11 +1,15 @@
 # photo-coloring
 
-![Example 1](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/10.png  "Example 1")
+![Grayscale images](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/2.png  "GrayScale")
+![Arrow](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/18.png  "Arrow")
+![Colored](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/10.png  "Colored")
+
 Colouring photos could bring you a lot of fun to your daily life. Just imagine if you coloured your grandma’s old photo and showed it to your family, how surprised and happy they would be.
 
 ![Example 2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/3.jpg  "Example 2")
 
 Colouring a picture with Photoshop is a so exhausting process, so we implemented this Photo coloring tool, which is based on
+
 [Let there be Color](http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf)
 , it's Deep Learning based on CNN, it can color any grayscale picture with any color scale and picture resolution.
 
@@ -24,9 +28,15 @@ pip3 install -r requirements.txt
 python3 WebApp/app.py
 ```
 Then the endpoint will be running on http://127.0.0.1:5000/
+
 ![UI](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/20.jpg  "UI")
+## How to use the Pre-Trained model
+- Download the Pre-trained model from here: 
+- Unzip the file into ```algorithm/Models/```
+- Run the Run the Endpoint again
 
 ## Results
+
 The results are not bad at all! a lot of test cases gonna be so realistic, but the model still needs more training
 
  Original Image (grayscale)                                                                                                       | Resultant Image (colored)
@@ -44,6 +54,7 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 ## Dataset
 - Dataset used is [MIT Places Scence Dataset](http://places.csail.mit.edu/).
 **Sample of the data used**
+
 ![Data Sample](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/8.png  "Data Sample")
 
 - The pre-trained model is trained only on Landscapes, seas and gardens pictures.
@@ -58,5 +69,6 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 - Training, Training and more Training
 - Train on more data clusters
 - Extend the project to be able to colorize Videos
+
 ## References
 - http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/en/
