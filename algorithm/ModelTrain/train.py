@@ -312,7 +312,7 @@ def Test(names):
         plt.imshow(Colorized_Image)
         plt.imsave('../WebApp/static/pics/colored-'+str(name),Colorized_Image)
         #tf.reset_default_graph()
-    saver.save(sess, "../Models/Model")
+    #saver.save(sess, "../Models/Model")
 
 def Calcultaing_Accuracy(img1, img2):
     dif = 0.0
