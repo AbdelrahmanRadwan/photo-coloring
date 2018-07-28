@@ -61,12 +61,8 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 ## Experiments
 ![Experiments](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/9.png  "Experiments")
 
-## Future Work
-- Training, Training and more Training
-- Train on more data clusters
-- Extend the project to be able to colorize Videos
 
-## References
+## References & Tutorials
 
 ### Useful materials
 - Introduction to the problem: http://tinyclouds.org/colorize/
@@ -74,6 +70,7 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 
 ### Other related projects
 - https://github.com/pavelgonchar/colornet
+- https://github.com/satoshiiizuka/siggraph2016_colorization
 - https://github.com/OmarSayedMostafa/Deep-learning-Colorization-for-visual-media
 
 ### Tutorials
@@ -82,13 +79,19 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 - CNN: https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/ 
 - CNN: https://www.youtube.com/watch?v=Gu0MkmynWkw 
 - CNN: https://www.youtube.com/watch?v=2-Ol7ZB0MmU 
+- CNN: https://www.youtube.com/watch?v=s716QXfApa0
+- Image Colorization: https://www.youtube.com/watch?v=2IWhh1gd_p0
+- IMage Colorization: https://www.youtube.com/watch?v=S1HE9SpZl8A
+- Image Colorization: https://blog.floydhub.com/colorizing-b-w-photos-with-neural-networks/
+- Image Colorization: https://www.youtube.com/watch?v=tknFQULAAs0
+- Image Colorization: https://www.youtube.com/watch?v=KO7W0Qq8yUE
 - Deep learning: https://www.youtube.com/watch?v=He4t7Zekob0 
 
-### Shortcuts:
+### Shortcuts
 - YUV: https://en.wikipedia.org/wiki/YUV 
 - CNN: https://en.wikipedia.org/wiki/Convolutional_neural_network 
 
-### CNN practice:
+### CNN practice
 - https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8 
 - http://cv-tricks.com/tensorflow-tutorial/training-convolutional-neural-network-for-image-classification/ 
 - http://richzhang.github.io/colorization/ 
@@ -100,7 +103,20 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 - https://gist.github.com/standarderror/43582e9a15038806da8a846903438ebe
 - https://becominghuman.ai/building-an-image-classifier-using-deep-learning-in-python-totally-from-a-beginners-perspective-be8dbaf22dd8 https://medium.com/@parthvadhadiya424/hello-world-program-in-keras-with-cnn-dog-vs-cat-classification-efc6f0da3cc5
 
+### Other related papers
+- http://richzhang.github.io/colorization/
 
+### Useful Articles
+- https://hackernoon.com/colorising-black-white-photos-using-deep-learning-4da22a05f531
+- http://whatimade.today/two-weeks-of-colorizebot-conclusions-and-statistics/
 
+### Video colorization
+- https://www.youtube.com/watch?v=SM9YwN_Dvv0
+- https://www.youtube.com/watch?v=MfaTOXxA8dM
+
+## Future Work
+- Training, Training and more Training
+- Train on more data clusters
+- Extend the project to be able to colorize Videos
 
 
