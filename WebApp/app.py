@@ -4,7 +4,7 @@ from flask import (Flask,
                    request,
                    send_from_directory)
 
-import modeltrain.train as testing
+import algorithm.ModelTrain.train as testing
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
