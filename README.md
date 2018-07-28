@@ -43,13 +43,16 @@ This project is an implementation of the [Let there be Color](http://hi.cs.wased
 
 ## Dataset
 - Dataset used is [MIT Places Scence Dataset](http://places.csail.mit.edu/).
+**Sample of the data used**
+![Data Sample](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/8.png  "Data Sample")
+
 - The pre-trained model is trained only on Landscapes, seas and gardens pictures.
 
 ## Model Used
-![Example 2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/example1.png  "Example 2")
+![Model](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/7.png  "Model")
 
 ## Experiments
-![Example 2](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/example1.png  "Example 2")
+![Experiments](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/9.png  "Experiments")
 
 ## Future Work
 - Training, Training and more Training
