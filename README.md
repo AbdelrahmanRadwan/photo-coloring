@@ -27,7 +27,7 @@ Then the endpoint will be running on http://127.0.0.1:5000/
 
 ![UI](https://github.com/AbdelrahmanRadwan/photo-coloring/blob/master/documentation/pics/20.jpg  "UI")
 ## How to use the Pre-Trained model
-- Download the Pre-trained model from here: 
+- Download the Pre-trained model from here: https://www.dropbox.com/s/j9sehdm7fs65wax/model.zip?dl=0
 - Unzip the file into ```algorithm/Models/```
 - Run the Run the Endpoint again
 
